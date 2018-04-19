@@ -1,19 +1,56 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Lang" content="en">
-<title>Datumbox Twitter Sentiment Analysis Demo</title>
-</head>
-<body>
-<h1>Datumbox Twitter Sentiment Analysis</h1>
-<p>Type your keyword below to perform Sentiment Analysis on Twitter Results:</p>
-<form method="GET">
-    <label>Keyword: </label> <input type="text" name="q" /> 
-    <input type="submit" />
-</form>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>My Twitter Sentiment Analysis App</title>
 
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+    
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <a class="navbar-brand" href="#">Twitter Sentiment Analysis</a>
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="https://twitter.com/codestellar" target="_blank">Find Me on Twitter</a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/roots.gaurav" target="_blank">Facebook</a>
+            </li>
+        </ul>
+    </nav>
+
+
+<div class="container" style="margin-top:5%;">
+
+ <div class="row">
+<div class="col-md-12">
+
+        <form method="GET" lass="form-horizontal">
+        <div class="form-group">
+            <legend>Twitter Sentiment Analysis:</legend>
+        </div
+        <div class="form-group">
+            <div class="col-md-8">
+                <input type="text" placeholder="Enter keyword" name="q" class="form-control" value="">
+            </div>
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-info" />
+            </div>            
+        </div>
+
+        </form>
+        </div>
 <?php
 
 if(isset($_GET['q']) && $_GET['q']!='') {
@@ -33,14 +70,20 @@ if(isset($_GET['q']) && $_GET['q']!='') {
 
     ?>
     <h1>Results for "<?php echo $_GET['q']; ?>"</h1>
-    <table border="1">
+
+
+<table class="table table-bordered table-hover">
+    <thead>
         <tr>
-            <td>Id</td>
-            <td>User</td>
-            <td>Text</td>
-            <td>Twitter Link</td>
-            <td>Sentiment</td>
+        <th>Id</th>
+            <th>User</th>
+            <th>Text</th>
+            <th>Twitter Link</th>
+            <th>Sentiment</th>
         </tr>
+    </thead>
+    <tbody>
+        <tr>
         <?php
         foreach($results as $tweet) {
             
@@ -62,6 +105,7 @@ if(isset($_GET['q']) && $_GET['q']!='') {
                 <td><a href="<?php echo $tweet['url']; ?>" target="_blank">View</a></td>
                 <td><?php echo $tweet['sentiment']; ?></td>
             </tr>
+            </tbody>
             <?php
         }
         ?>    
@@ -70,6 +114,12 @@ if(isset($_GET['q']) && $_GET['q']!='') {
 }
 
 ?>
-  
-</body>
+</div>
+</div>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
 </html>
